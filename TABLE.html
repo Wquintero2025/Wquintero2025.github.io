@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Academic Agenda </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        caption {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .colspan-cell {
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+        }
+        .rowspan-cell {
+            background-color: #ffc107;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <caption>My Weekly Study Schedule</caption>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>8:10 AM - 10:00 AM</td>
+                <td>Integrated Software Applications I</td>
+                <td>         </td>
+                <td>Integrated Software Applications I</td>
+                <td>        </td>
+                <td>Free Day</td>
+            </tr>
+            <tr>
+                <td>10:10 AM - 12:00 AM</td>
+                <td>           </td>
+                <td>Internet/Web Page Development</td>
+                <td>           </td>
+                <td>Internet/Web Page Development</td>
+                <td>Free Day</td>
+            </tr>
+            <tr>
+                <td>12:00 AM - 2:00 PM</td>
+                <td colspan="5" class="colspan-cell">Lunch Break and Home Work Time</td>
+            </tr>
+            <tr>
+                <td>6:00 PM - 9:00 PM</td>
+                <td>            </td>
+                <td>Business and Professional Communication</td>
+                <td>            </td>
+                <td>            </td>
+                <td>Free Day</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>My Portafolio for class - Internet/Web Page Development</caption>
+        <thead>
+            <tr>
+                <th>Week</th>
+                <th>Project</th>
+                <th>Task</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2" class="rowspan-cell">Week 1</td>
+                <td>Install Visual Studio Code</td>
+                <td>Setting the developer environment</td>
+            </tr>
+                     <tr>
+                <td>My First Web Page</td>
+                <td>Create teh web page - Hello World </td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="rowspan-cell">Week 2</td>
+                <td>My First Interactive web</td>
+                <td>Creating a web page with the list of my favorite music and games</td>
+            </tr>
+            <tr>
+                <td>Creating the Hyperlinks</td>
+                <td>Define my 5 favorite list of music and games. After, to connect with spotify using hyperlinks</td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="rowspan-cell">Week 3</td>
+                <td>Learning about tables on my web page</td>
+                <td>Creating my first table in my web site</td>
+            </tr>
+            <tr>
+                <td>Creating My web page with my schedule</td>
+                <td>Defining my academic schedule and creating the portafolio related to the last 3 weeks Internet/Web Page Development class</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
