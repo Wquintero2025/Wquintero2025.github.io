@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Form & Survey</title>
+</head>
+<body>
+
+  <!-- ========================= -->
+  <!-- CONTACT FORM SECTION -->
+  <!-- ========================= -->
+  <h1>**** Contact Us, Let's Talk ****</h1>
+  <p>We want to Know more about you — please fill out this form.</p>
+
+  <!-- Contact form starts -->
+    <form action="#" method="GET">
+
+    <!-- Name input -->
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" placeholder="Your name"><br><br>
+
+    <!-- Email input -->
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" placeholder="you@example.com"><br><br>
+
+    <!-- Subject dropdown -->
+    <label for="subject">Subject:</label><br>
+    <select id="subject" name="subject">
+      <option value="">--Please choose an option--</option>
+      <option value="general">General Inquiry</option>
+      <option value="collab">Project Collaboration</option>
+      <option value="feedback">Feedback</option>
+      <option value="other">Other</option>
+    </select><br><br>
+
+    <!-- Message box -->
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="5" cols="40" placeholder="Write your message here..."></textarea><br><br>
+
+    <!-- Buttons -->
+    <input type="submit" value="Send">
+    <input type="reset" value="Clear">
+
+  </form>
+  <!-- Contact form ends -->
+
+  <hr>
+
+  <!-- ========================= -->
+  <!-- SURVEY SECTION -->
+  <!-- ========================= -->
+  <h2>Quick Survey</h2>
+  <p>Please take a moment to answer this short survey.</p>
+
+  <!-- Survey form starts -->
+  <form action="#" method="GET">
+
+    <!-- Question 1: dropdown -->
+    <label for="found">How did you find my portfolio?</label><br>
+    <select id="found" name="found">
+      <option value="">--Select an option--</option>
+      <option value="google">Google Search</option>
+      <option value="social">Social Media</option>
+      <option value="referral">Referral</option>
+      <option value="other">Other</option>
+    </select><br><br>
+
+    <!-- Question 2: radio buttons -->
+    <p>Rate your overall experience in our site:</p>
+    <input type="radio" id="rate1" name="rating" value="1">
+    <label for="rate1">1</label>
+    <input type="radio" id="rate2" name="rating" value="2">
+    <label for="rate2">2</label>
+    <input type="radio" id="rate3" name="rating" value="3">
+    <label for="rate3">3</label>
+    <input type="radio" id="rate4" name="rating" value="4">
+    <label for="rate4">4</label>
+    <input type="radio" id="rate5" name="rating" value="5">
+    <label for="rate5">5</label><br><br>
+
+    <!-- Question 3: comments -->
+    <label for="comments">Do you have any additional comments?</label><br>
+    <textarea id="comments" name="comments" rows="4" cols="40" placeholder="Your suggestions..."></textarea><br><br>
+
+    <!-- Buttons -->
+    <input type="submit" value="Submit Survey">
+    <input type="reset" value="Clear">
+
+  </form>
+  <!-- Survey form ends -->
+
+</body>
+</html>
