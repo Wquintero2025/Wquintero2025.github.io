@@ -1,71 +1,218 @@
 
-<!-- Test Midterm about page luigis Pizza-->
- <!-- Class  Internet/Web Page Development (ITSC-1319-301)-->
-   <!-- Class  Internet/Web Page Development (ITSC-1319-301)-->
-    <!-- Student Name: Wilson Quintero-->
-     <!-- Date: 9/30/2025-->
-      <!-- Instructor Name: Derrick Martinez-->
-       
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Page Tittle -->
 <head>
-  <meta charset="UTF-8">
-  <title>Luigi's Pizza</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luigi's Pizza | Home</title>
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --green: #2e7d32;
+      --blue:  #1565c0;
+      --black: #0f172a;
+      --gray:  #e5e7eb;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+    }
+    .brand { font-weight: 800; letter-spacing: .5px; }
+    .nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      transition: background .2s ease;
+      font-size: 0.95rem;
+    }
+    .nav a:hover { background: rgba(255,255,255,.15); }
+
+    h1, h2 { line-height: 1.25; margin: 0 0 12px 0; }
+    h1 { font-size: clamp(1.35rem, 2.5vw, 1.75rem); }
+    h2 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
+    p  { margin: 0 0 12px 0; font-size: 1rem; }
+    .muted { color: #475569; font-size: 0.95rem; }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--gray);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--gray); text-align: left; }
+    thead th { background: #f1f5f9; font-weight: 700; }
+    tbody tr:nth-child(even) { background: #f8fafc; }
+
+    ul.menu { list-style: none; padding: 0; margin: 0; }
+    .menu li {
+      display: grid; grid-template-columns: 1fr auto; align-items: baseline;
+      gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray);
+    }
+    .menu li:last-child { border-bottom: none; }
+    .dish { font-weight: 600; }
+    .desc { color: #475569; font-size: .95rem; }
+    .price { font-weight: 700; color: var(--green); }
+
+    .image-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--gray); box-shadow: 0 6px 14px rgba(0,0,0,0.06); }
+    .image-wrap img { display: block; width: 100%; height: auto; }
+
+    footer {
+      margin-top: 24px;
+      border-top: 1px solid var(--gray);
+      background: #f8fafc;
+      color: var(--black);
+    }
+    .footer-inner {
+      padding: 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .footer-nav a { color: var(--blue); text-decoration: none; padding: 6px 8px; border-radius: 8px; }
+    .footer-nav a:hover { background: #e2e8f0; }
+  </style>
 </head>
- <!-- Body Page Luigis Pizza-->
 <body>
-<header>
-  <h1> Welcome to Luigi's Pizza!</h1>
-  <p>The best wood-fired pizzas made fresh daily.</p>
-</header>
- <!-- Secion Table Hours Open - closed luigis Pizza-->
-<section>
-  <h2>Weekly Schedule</h2>
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Day</th>
-        <th scope="col">Open</th>
-        <th scope="col">Close</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Monday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-      <tr><td>Tuesday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-      <tr><td>Wednesday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-      <tr><td>Thursday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-      <tr><td>Friday</td><td>11:00 AM</td><td>10:00 PM</td></tr>
-      <tr><td>Saturday</td><td>11:00 AM</td><td>10:00 PM</td></tr>
-      <tr><td>Sunday</td><td>12:00 PM</td><td>8:00 PM</td></tr>
-    </tbody>
-  </table>
-</section>
-<!-- Seccion Menu and ingredientes luigis Pizza-->
-<section>
-  <h2>Menu</h2>
-  <ul>
-    <li>Margherita Pizza (Tomato sauce, fresh mozzarella, and basil.) - $12.00</li>
-    <li>Pepperoni Pizza (Tomato sauce, cheese, and plenty of pepperoni slices.) - $14.00</li>
-    <li>BBQ Chicken Pizza (BBQ sauce, cheese, grilled chicken pieces, and red onion.)- $15.00</li>
-    <li>Veggie Delight Pizza (Tomato sauce, cheese, peppers, mushrooms, and olives.) - $13.00</li>
-    <li>Hawaiian Pizza (Tomato sauce, cheese, ham (or bacon), and pineapple.) - $10.00</li>
-  </ul>
-  <!-- Seccion Imagen Chef luigis Pizza-->
-<section>
-  <img src="images\chef_doing_pizza.jpg" alt="Chef making pizza" width="500" height="300">
-</section>
-<!-- Secion Contacto con Luigis Pizza-->
-<section>
-  <h2>Contact</h2>
-  <p>123 Main Street, Houston, TX</p>
-  <p><a href="tel:+18325551234">832-555-1234</a></p>
-  <p><a href="mailto:orders@luigispizza.com?subject=Pizza%20Order">orders@luigispizza.com</a></p>
-</section>
-<!-- Pie de Pagina luigis Pizza-->
-<footer>
-  <p>© 2025 Luigi’s Pizza</p>
-</footer>
+  <header>
+    <div class="container nav">
+      <div class="brand">Luigi's Pizza</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" id="intro">
+      <h1>Welcome to Luigi's Pizza!</h1>
+      <p class="muted">The best wood-fired pizzas, freshly made every day.</p>
+    </section>
+
+    <section class="card" id="hours">
+      <h2>Weekly Schedule</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Open</th>
+            <th>Close</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
+          <tr><td>Tuesday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
+          <tr><td>Thursday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
+          <tr><td>Friday</td><td>11:00 AM</td><td>10:00 PM</td></tr>
+          <tr><td>Saturday</td><td>11:00 AM</td><td>10:00 PM</td></tr>
+          <tr><td>Sunday</td><td>12:00 PM</td><td>8:00 PM</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="menu">
+      <h2>Menu</h2>
+      <ul class="menu">
+        <li>
+          <div>
+            <div class="dish">Margherita Pizza</div>
+            <div class="desc">Tomato sauce, fresh mozzarella, and basil.</div>
+          </div>
+          <div class="price">$12.00</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish">Pepperoni Pizza</div>
+            <div class="desc">Tomato sauce, cheese, and plenty of pepperoni slices.</div>
+          </div>
+          <div class="price">$14.00</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish">BBQ Chicken Pizza</div>
+            <div class="desc">BBQ sauce, cheese, grilled chicken pieces, and red onion.</div>
+          </div>
+          <div class="price">$15.00</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish">Veggie Delight Pizza</div>
+            <div class="desc">Tomato sauce, cheese, peppers, mushrooms, and olives.</div>
+          </div>
+          <div class="price">$13.00</div>
+        </li>
+        <li>
+          <div>
+            <div class="dish">Hawaiian Pizza</div>
+            <div class="desc">Tomato sauce, cheese, ham (or bacon), and pineapple.</div>
+          </div>
+          <div class="price">$10.00</div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" id="chef-image">
+      <h2>Our Wood-Fired Oven</h2>
+      <div class="image-wrap">
+        <img src="images/chef_doing_pizza.jpg" alt="Chef making pizza" width="1200" height="720">
+      </div>
+    </section>
+
+    <section class="card" id="contact">
+      <h2>Contact</h2>
+      <p>123 Main Street, Houston, TX</p>
+      <p><a href="tel:+18325551234">(832) 555-1234</a></p>
+      <p><a href="mailto:orders@luigispizza.com?subject=Pizza%20Order">orders@luigispizza.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <small>&copy; <span id="year"></span> Luigi's Pizza</small>
+      <nav class="footer-nav">
+        <a href="/index.html">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

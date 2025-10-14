@@ -2,82 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>My Dream Vacation - Colorado Mountains</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Dream Vacation — Colorado Mountains</title>
+
+  <!--
+    Unified site styles:
+    - Same color palette (white, green, blue, black)
+    - Simple box model, spacing, shadows, and text sizing
+    - Reusable "card" sections, sticky header, footer nav
+  -->
+  <style>
+    :root {
+      --white: #ffffff;
+      --green: #2e7d32;   /* sober green */
+      --blue:  #1565c0;   /* mid blue */
+      --black: #0f172a;   /* very dark navy/black for contrast */
+      --gray:  #e5e7eb;   /* light gray for separators */
+    }
+
+    /* Reset + box model */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    /* Base text */
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* Layout container */
+    .container { max-width: 1000px; margin: 0 auto; padding: 16px; }
+
+    /* Header + nav */
+    header {
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; }
+    .brand { font-weight: 800; letter-spacing: .5px; }
+    .nav a { color: var(--white); text-decoration: none; padding: 8px 10px; border-radius: 8px; transition: background .2s ease; font-size: .95rem; }
+    .nav a:hover { background: rgba(255,255,255,.15); }
+
+    /* Headings and text */
+    h1, h2 { line-height: 1.25; margin: 0 0 12px 0; }
+    h1 { font-size: clamp(1.35rem, 2.5vw, 1.8rem); }
+    h2 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
+    p  { margin: 0 0 12px 0; }
+    .muted { color: #475569; font-size: .95rem; }
+
+    /* Reusable card */
+    .card { background: var(--white); border: 1px solid var(--gray); border-radius: 12px; padding: 16px; margin: 16px 0; box-shadow: 0 6px 14px rgba(0,0,0,0.06); }
+
+    /* Lists */
+    .list { padding-left: 18px; }
+
+    /* Media wrappers (responsive) */
+    .image-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--gray); box-shadow: 0 6px 14px rgba(0,0,0,0.06); }
+    .image-wrap img { display: block; width: 100%; height: auto; }
+
+    .ratio { position: relative; width: 100%; }
+    .ratio iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .ratio.r16x9 { padding-top: 56.25%; }
+    .ratio.r4x3  { padding-top: 75%; }
+
+    /* Footer */
+    footer { margin-top: 24px; border-top: 1px solid var(--gray); background: #f8fafc; color: var(--black); }
+    .footer-inner { padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .footer-nav a { color: var(--blue); text-decoration: none; padding: 6px 8px; border-radius: 8px; }
+    .footer-nav a:hover { background: #e2e8f0; }
+  </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- ========================= HEADER ========================= -->
   <header>
-    <h1 style="text-align:center;">My Dream Vacation in the Colorado Mountains</h1>
-    <hr>
+    <div class="container nav">
+      <div class="brand">Dream Vacation</div>
+      <nav class="nav-links">
+        <!-- Adjust these hrefs to your real pages if needed -->
+        <a href="/index.html">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Description -->
-   <!-- Description Section -->
-<h2 style="text-align:center;">Colorado is Funny Always</h2>
-<div style="max-width:600px; margin:auto; padding:15px; border:1px solid #ccc; border-radius:10px; background-color:#f9f9f9;">
+  <main class="container">
+    <!-- ========================= INTRO ========================= -->
+    <section class="card" id="intro">
+      <h1>My Dream Vacation in the Colorado Mountains</h1>
+      <p class="muted">Colorado offers something fun in every season of the year.</p>
+    </section>
 
-  <p>
-    My dream vacation is to spend time in the beautiful Colorado mountains. 
-    This place is special because it offers something fun in every season of the year.
-  </p>
+    <!-- ====================== DESCRIPTION ====================== -->
+    <section class="card" id="about">
+      <h2>Why Colorado?</h2>
+      <p>My dream vacation is to spend time in the beautiful Colorado mountains. This place is special because it offers something fun in every season of the year.</p>
+      <ul class="list">
+        <li><strong>Winter:</strong> Skiing, snow activities, and relaxing in a warm cabin with holiday traditions.</li>
+        <li><strong>Spring:</strong> Hiking and taking photos of wildflowers and nature.</li>
+        <li><strong>Summer:</strong> Camping, fishing, and exploring lakes.</li>
+        <li><strong>Fall:</strong> Scenic walks and calm days enjoying the amazing colors of the trees.</li>
+      </ul>
+      <p>No matter the season, the Colorado mountains are a place to enjoy nature, have fun, and feel at peace.</p>
+    </section>
 
-  <p style="margin-left:20px;">
-    <strong>Winter:</strong> Skiing, snow activities, and enjoying a warm cabin with holiday traditions.
-  </p>
+    <!-- ========================= IMAGE ========================= -->
+    <section class="card" id="gallery">
+      <h2>Rocky Mountains</h2>
+      <div class="image-wrap">
+        <img src="images/colorado.jpg" alt="Snowy Rocky Mountains in Colorado" width="1200" height="800" />
+      </div>
+    </section>
 
-  <p style="margin-left:20px;">
-    <strong>Spring:</strong> Hiking and taking pictures of flowers and nature.
-  </p>
+    <!-- ========================= VIDEO ========================= -->
+    <section class="card" id="video">
+      <h2>Vacations in Colorado — Video</h2>
+      <div class="ratio r16x9">
+        <iframe
+          src="https://www.youtube.com/embed/SwIB-QlxNCo?start=584"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
 
-  <p style="margin-left:20px;">
-    <strong>Summer:</strong> Camping, fishing, and exploring lakes.
-  </p>
+    <!-- ========================== MAP ========================== -->
+    <section class="card" id="map">
+      <h2>Location — Rocky Mountain National Park</h2>
+      <div class="ratio r4x3">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12285.595862981586!2d-105.545!3d40.3428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876955a57e0ecfb5%3A0xc8b9ef6a8f12dbe6!2sRocky%20Mountain%20National%20Park!5e0!3m2!1sen!2sus!4v1694890534906!5m2!1sen!2sus"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+  </main>
 
-  <p style="margin-left:20px;">
-    <strong>Fall:</strong> Walking and relaxing while enjoying the amazing colors of the trees.
-  </p>
-
-  <p>
-    No matter the time of year, the Colorado mountains are a place to enjoy nature, have fun, and feel peace.
-  </p>
-
-</div>
-
-  <!-- Image -->
-  <h2 style="text-align:center;">Rocky Mountains</h2>
-  <div style="text-align:center;">
-        <img src="images/colorado.jpg" 
-         alt="Snowy Rocky Mountains in Colorado" width="500">
-  </div>
-
-  <!-- Video -->
-   <h2 style="text-align:center;">Vacations in Colorado - YouTube Video</h2>
-  <div style="text-align:center;">
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/SwIB-QlxNCo?start=584"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <!-- Map -->
-  <h2 style="text-align:center;">Location on Google Maps</h2>
-  <div style="text-align:center;">
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12285.595862981586!2d-105.545!3d40.3428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876955a57e0ecfb5%3A0xc8b9ef6a8f12dbe6!2sRocky%20Mountain%20National%20Park!5e0!3m2!1sen!2sus!4v1694890534906!5m2!1sen!2sus" 
-      width="500" height="350" style="border:0;" allowfullscreen="" loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- Footer -->
+  <!-- ========================= FOOTER ========================= -->
   <footer>
-    <hr>
-    <p style="text-align:center;">&copy; Houston 2025 Developed By Wilson Quintero - Internet/Web Page Development Class</p>
+    <div class="container footer-inner">
+      <small>&copy; <span id="year"></span> Houston 2025 — Developed by Wilson Quintero — Internet/Web Page Development Class</small>
+      <nav class="footer-nav">
+        <a href="/index.html">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
