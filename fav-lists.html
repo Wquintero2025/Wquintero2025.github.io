@@ -1,33 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>My Favorite Lists</title>
+
+  <!-- Global unified styles -->
+  <style>
+    :root {
+      --white: #ffffff;
+      --green: #2e7d32;
+      --blue:  #1565c0;
+      --black: #0f172a;
+      --gray:  #e5e7eb;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 16px; }
+
+    header {
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: sticky; top: 0; z-index: 10;
+    }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; }
+    .brand { font-weight: 800; letter-spacing: .5px; }
+    .nav a { color: var(--white); text-decoration: none; padding: 8px 10px; border-radius: 8px; transition: background .2s ease; font-size: 0.95rem; }
+    .nav a:hover { background: rgba(255,255,255,.15); }
+
+    .card { background: var(--white); border: 1px solid var(--gray); border-radius: 12px; padding: 16px; margin: 16px 0; box-shadow: 0 6px 14px rgba(0,0,0,0.06); }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ol, ul { margin: 0; padding-left: 24px; }
+    li { margin-bottom: 8px; }
+
+    footer { margin-top: 24px; border-top: 1px solid var(--gray); background: #f8fafc; color: var(--black); }
+    .footer-inner { padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .footer-nav a { color: var(--blue); text-decoration: none; padding: 6px 8px; border-radius: 8px; }
+    .footer-nav a:hover { background: #e2e8f0; }
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="fav-lists.html">My Favorite Lists</a>
-  </nav>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="container nav">
+      <div class="brand">My Favorites</div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="fav-lists.html">My Favorite Lists</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-  <h1>My Favorite Music and Games</h1>
+  <!-- Main Content -->
+  <main class="container">
+    <section class="card">
+      <h1>My Favorite Music and Games</h1>
+      <p>Here are some of my all-time favorite songs, albums, and video games that inspire and entertain me.</p>
+    </section>
 
-  <h2>Top 5 Songs/Albums</h2>
-  <ol>
-    <li><a href="https://www.youtube.com/watch?v=BudVsICXxF8" target="_blank">Qué Bonita Es Esta Vida – Jorge Celedón</a></li>
-    <li><a href="https://www.youtube.com/watch?v=YXnjy5YlDwk" target="_blank">Vivir Mi Vida – Marc Anthony</a></li>
-    <li><a href="https://www.youtube.com/watch?v=lN4p0Pbc-xk" target="_blank">La Venia Bendita – Marco Antonio Solís</a></li>
-    <li><a href="https://www.youtube.com/watch?v=LqKscPDW8Y0" target="_blank">Las Locuras Mías – Silvestre Dangond</a></li>
-    <li><a href="https://www.youtube.com/watch?v=kJQP7kiw5Fk" target="_blank">Despacito – Luis Fonsi ft. Daddy Yankee</a></li>
-  </ol>
+    <section class="card">
+      <h2>Top 5 Songs / Albums</h2>
+      <ol>
+        <li><a href="https://www.youtube.com/watch?v=BudVsICXxF8" target="_blank">Qué Bonita Es Esta Vida – Jorge Celedón</a></li>
+        <li><a href="https://www.youtube.com/watch?v=YXnjy5YlDwk" target="_blank">Vivir Mi Vida – Marc Anthony</a></li>
+        <li><a href="https://www.youtube.com/watch?v=lN4p0Pbc-xk" target="_blank">La Venia Bendita – Marco Antonio Solís</a></li>
+        <li><a href="https://www.youtube.com/watch?v=LqKscPDW8Y0" target="_blank">Las Locuras Mías – Silvestre Dangond</a></li>
+        <li><a href="https://www.youtube.com/watch?v=kJQP7kiw5Fk" target="_blank">Despacito – Luis Fonsi ft. Daddy Yankee</a></li>
+      </ol>
+    </section>
 
-  <h2>Top 5 Video Games</h2>
-  <ul>
-    <li><a href="https://www.minecraft.net" target="_blank">Minecraft</a></li>
-    <li><a href="https://www.epicgames.com/fortnite" target="_blank">Fortnite</a></li>
-    <li><a href="https://www.nintendo.com/store/products/super-mario-odyssey-switch/" target="_blank">Super Mario Odyssey</a></li>
-    <li><a href="https://www.nintendo.com/store/products/the-legend-of-zelda-breath-of-the-wild-switch/" target="_blank">The Legend of Zelda: Breath of the Wild</a></li>
-    <li><a href="https://www.callofduty.com/" target="_blank">Call of Duty</a></li>
-  </ul>
+    <section class="card">
+      <h2>Top 5 Video Games</h2>
+      <ul>
+        <li><a href="https://www.minecraft.net" target="_blank">Minecraft</a></li>
+        <li><a href="https://www.epicgames.com/fortnite" target="_blank">Fortnite</a></li>
+        <li><a href="https://www.nintendo.com/store/products/super-mario-odyssey-switch/" target="_blank">Super Mario Odyssey</a></li>
+        <li><a href="https://www.nintendo.com/store/products/the-legend-of-zelda-breath-of-the-wild-switch/" target="_blank">The Legend of Zelda: Breath of the Wild</a></li>
+        <li><a href="https://www.callofduty.com/" target="_blank">Call of Duty</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <small>&copy; <span id="year"></span> Wilson Quintero — Web Development Class</small>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="fav-lists.html">My Favorite Lists</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
