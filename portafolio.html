@@ -1,17 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Homepage</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Homepage — Wilson Quintero</title>
+
+  <!--
+    ITSC-1319-301 refinements (box model, sombras, espaciado, tipografía fluida)
+    • Paleta/espaciado/sombras como variables
+    • Tipografía responsive con clamp()
+    • Header pegajoso con gradiente y nav móvil sin JS
+    • Tarjetas con elevación y ritmo consistente
+    • Accesibilidad: skip link, focus visible, aria-current
+  -->
+  <style>
+    :root {
+      /* Palette */
+      --white: #ffffff;
+      --green: #2e7d32;
+      --blue:  #1565c0;
+      --black: #0f172a;
+      --gray-50:  #f8fafc;
+      --gray-200: #e5e7eb;
+      --muted: #475569;
+
+      /* Spacing */
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 6px 14px rgba(0,0,0,.08);
+
+      /* Radius */
+      --radius: 12px;
+
+      /* Type scale */
+      --fs-sm: clamp(.9rem, 1.5vw, .95rem);
+      --fs-base: clamp(1rem, 1.6vw, 1.05rem);
+      --fs-h1: clamp(1.45rem, 3vw, 1.9rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: var(--fs-base);
+    }
+
+    :focus-visible { outline: 3px solid rgba(21,101,192,.5); outline-offset: 2px; border-radius: 8px; }
+
+    .container { max-width: 960px; margin-inline: auto; padding-inline: clamp(12px, 3vw, 24px); }
+
+    .skip-link { position: absolute; left: -9999px; top: auto; }
+    .skip-link:focus { left: 16px; top: 12px; background: var(--white); padding: 8px 12px; border-radius: 8px; box-shadow: var(--shadow-sm); }
+
+    header {
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      color: var(--white);
+      box-shadow: var(--shadow-md);
+      position: sticky; top: 0; z-index: 10;
+    }
+
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+    .brand { font-weight: 800; letter-spacing: .4px; }
+
+    nav[aria-label="Primary"] details { position: relative; }
+    nav[aria-label="Primary"] summary { list-style: none; cursor: pointer; border-radius: 10px; padding: 8px 10px; }
+    nav[aria-label="Primary"] summary::-webkit-details-marker { display: none; }
+    nav[aria-label="Primary"] .links { display: none; }
+    nav[aria-label="Primary"] details[open] .links { display: grid; gap: 6px; position: absolute; right: 0; top: calc(100% + 6px); background: rgba(0,0,0,.25); padding: 6px; border-radius: 10px; }
+
+    @media (min-width: 700px) {
+      nav[aria-label="Primary"] details { display: none; }
+      nav[aria-label="Primary"] .links { display: flex; gap: var(--space-2); }
+    }
+
+    .nav a { color: var(--white); text-decoration: none; padding: 8px 10px; border-radius: 10px; transition: background .2s ease; font-size: .95rem; }
+    .nav a:hover { background: rgba(255,255,255,.15); }
+    .nav a[aria-current="page"] { background: rgba(255,255,255,.22); }
+
+    main { padding-block: var(--space-6); }
+    section + section { margin-top: var(--space-6); }
+
+    .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-5); box-shadow: var(--shadow-sm); }
+
+    h1 { font-size: var(--fs-h1); margin: 0 0 var(--space-3) 0; }
+    p { margin: 0 0 var(--space-3) 0; }
+
+    footer { margin-top: var(--space-6); border-top: 1px solid var(--gray-200); background: var(--gray-50); color: var(--black); }
+    .footer-inner { padding: var(--space-4); display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+    .footer-nav a { color: var(--blue); text-decoration: none; padding: 6px 8px; border-radius: 8px; }
+    .footer-nav a:hover { background: #e2e8f0; }
+  </style>
 </head>
 <body>
-  <!-- Simple nav bar -->
-  <nav>
-    <a href="index.html">Home</a> 
-    <a href="fav-lists.html">My Favorite Lists</a>
-  </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <h1>Welcome to My Homepage</h1>
-  <p>This is my first website for web development class.</p>
+  <header>
+    <div class="container nav">
+      <div class="brand">My Homepage</div>
+      <nav aria-label="Primary" class="nav">
+        <details>
+          <summary>Menu</summary>
+          <div class="links">
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="fav-lists.html">My Favorite Lists</a>
+          </div>
+        </details>
+        <div class="links" aria-hidden="true">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="fav-lists.html">My Favorite Lists</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="card">
+      <h1>Welcome to My Homepage</h1>
+      <p class="muted">This is my first website for web development class.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <small>&copy; <span id="year"></span> Wilson Quintero — Web Development Class</small>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="fav-lists.html">My Favorite Lists</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

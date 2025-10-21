@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,117 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Luigi's Pizza | Home</title>
 
+  <!--
+    ITSC-1319-301 refinements: box model, sombras, espaciado, tipografía fluida
+    • Paleta/espaciado/sombras como variables
+    • Tipografía responsive con clamp()
+    • Header pegajoso con gradiente y navegación móvil sin JS
+    • Tarjetas con elevación y ritmo consistente
+    • Accesibilidad: skip link, focus visible, tablas con caption y scope, aria-current
+  -->
   <style>
     :root {
+      /* Palette */
       --white: #ffffff;
       --green: #2e7d32;
       --blue:  #1565c0;
       --black: #0f172a;
-      --gray:  #e5e7eb;
+      --gray-50:  #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e5e7eb;
+      --muted: #475569;
+
+      /* Spacing */
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 6px 14px rgba(0,0,0,.08);
+
+      /* Radius */
+      --radius: 12px;
+
+      /* Type scale */
+      --fs-sm: clamp(.9rem, 1.5vw, .95rem);
+      --fs-base: clamp(1rem, 1.6vw, 1.05rem);
+      --fs-h2: clamp(1.2rem, 2.2vw, 1.4rem);
+      --fs-h1: clamp(1.45rem, 3vw, 1.9rem);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
 
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
       color: var(--black);
       background: var(--white);
       line-height: 1.6;
+      font-size: var(--fs-base);
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 16px;
-    }
+    :focus-visible { outline: 3px solid rgba(21,101,192,.5); outline-offset: 2px; border-radius: 8px; }
 
+    .container { max-width: 1000px; margin-inline: auto; padding-inline: clamp(12px, 3vw, 24px); }
+
+    /* Skip link */
+    .skip-link { position: absolute; left: -9999px; top: auto; }
+    .skip-link:focus { left: 16px; top: 12px; background: var(--white); padding: 8px 12px; border-radius: 8px; box-shadow: var(--shadow-sm); }
+
+    /* Header + Nav */
     header {
       background: linear-gradient(90deg, var(--blue), var(--green));
       color: var(--white);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      box-shadow: var(--shadow-md);
+      position: sticky; top: 0; z-index: 10;
     }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 16px;
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+    .brand { font-weight: 800; letter-spacing: .4px; }
+
+    nav[aria-label="Primary"] details { position: relative; }
+    nav[aria-label="Primary"] summary { list-style: none; cursor: pointer; border-radius: 10px; padding: 8px 10px; }
+    nav[aria-label="Primary"] summary::-webkit-details-marker { display: none; }
+    nav[aria-label="Primary"] .links { display: none; }
+    nav[aria-label="Primary"] details[open] .links { display: grid; gap: 6px; position: absolute; right: 0; top: calc(100% + 6px); background: rgba(0,0,0,.25); padding: 6px; border-radius: 10px; }
+
+    @media (min-width: 700px) {
+      nav[aria-label="Primary"] details { display: none; }
+      nav[aria-label="Primary"] .links { display: flex; gap: var(--space-2); }
     }
-    .brand { font-weight: 800; letter-spacing: .5px; }
-    .nav a {
-      color: var(--white);
-      text-decoration: none;
-      padding: 8px 10px;
-      border-radius: 8px;
-      transition: background .2s ease;
-      font-size: 0.95rem;
-    }
+
+    .nav a { color: var(--white); text-decoration: none; padding: 8px 10px; border-radius: 10px; transition: background .2s ease; font-size: .95rem; }
     .nav a:hover { background: rgba(255,255,255,.15); }
+    .nav a[aria-current="page"] { background: rgba(255,255,255,.22); }
 
-    h1, h2 { line-height: 1.25; margin: 0 0 12px 0; }
-    h1 { font-size: clamp(1.35rem, 2.5vw, 1.75rem); }
-    h2 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
-    p  { margin: 0 0 12px 0; font-size: 1rem; }
-    .muted { color: #475569; font-size: 0.95rem; }
+    main { padding-block: var(--space-6); }
+    section + section { margin-top: var(--space-6); }
 
-    .card {
-      background: var(--white);
-      border: 1px solid var(--gray);
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
-    }
+    /* Cards */
+    .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-5); box-shadow: var(--shadow-sm); }
 
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 10px 12px; border-bottom: 1px solid var(--gray); text-align: left; }
-    thead th { background: #f1f5f9; font-weight: 700; }
-    tbody tr:nth-child(even) { background: #f8fafc; }
+    /* Headings/Text */
+    h1, h2 { line-height: 1.25; margin: 0 0 var(--space-3) 0; }
+    h1 { font-size: var(--fs-h1); }
+    h2 { font-size: var(--fs-h2); }
+    p  { margin: 0 0 var(--space-3) 0; }
+    .muted { color: var(--muted); font-size: var(--fs-sm); }
 
+    /* Tables */
+    .table-wrap { overflow-x: auto; border: 1px solid var(--gray-200); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+    table { width: 100%; border-collapse: collapse; background: var(--white); }
+    caption { text-align: left; padding: var(--space-3) var(--space-4); font-weight: 700; color: #334155; }
+    thead th { background: var(--gray-100); font-weight: 700; text-transform: uppercase; letter-spacing: .02em; font-size: var(--fs-sm); }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); text-align: left; }
+    tbody tr:nth-child(even) { background: var(--gray-50); }
+
+    /* Menu list */
     ul.menu { list-style: none; padding: 0; margin: 0; }
-    .menu li {
-      display: grid; grid-template-columns: 1fr auto; align-items: baseline;
-      gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray);
-    }
+    .menu li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--gray-200); }
     .menu li:last-child { border-bottom: none; }
-    .dish { font-weight: 600; }
-    .desc { color: #475569; font-size: .95rem; }
-    .price { font-weight: 700; color: var(--green); }
+    .dish { font-weight: 700; }
+    .desc { color: var(--muted); font-size: var(--fs-sm); }
+    .price { font-weight: 800; color: var(--green); }
 
-    .image-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--gray); box-shadow: 0 6px 14px rgba(0,0,0,0.06); }
+    /* Media */
+    .image-wrap { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--gray-200); box-shadow: var(--shadow-md); }
     .image-wrap img { display: block; width: 100%; height: auto; }
 
-    footer {
-      margin-top: 24px;
-      border-top: 1px solid var(--gray);
-      background: #f8fafc;
-      color: var(--black);
-    }
-    .footer-inner {
-      padding: 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    }
+    /* Footer */
+    footer { margin-top: var(--space-6); border-top: 1px solid var(--gray-200); background: var(--gray-50); color: var(--black); }
+    .footer-inner { padding: var(--space-4); display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
     .footer-nav a { color: var(--blue); text-decoration: none; padding: 6px 8px; border-radius: 8px; }
     .footer-nav a:hover { background: #e2e8f0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <header>
     <div class="container nav">
       <div class="brand">Luigi's Pizza</div>
-      <nav class="nav-links">
-        <a href="/index.html">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#contact">Contact</a>
+      <nav aria-label="Primary" class="nav">
+        <details>
+          <summary>Menu</summary>
+          <div class="links">
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </details>
+        <div class="links" aria-hidden="true">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#contact">Contact</a>
+        </div>
       </nav>
     </div>
   </header>
 
-  <main class="container">
+  <main id="main" class="container">
     <section class="card" id="intro">
       <h1>Welcome to Luigi's Pizza!</h1>
       <p class="muted">The best wood-fired pizzas, freshly made every day.</p>
@@ -124,24 +167,27 @@
 
     <section class="card" id="hours">
       <h2>Weekly Schedule</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Day</th>
-            <th>Open</th>
-            <th>Close</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Monday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-          <tr><td>Tuesday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-          <tr><td>Wednesday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-          <tr><td>Thursday</td><td>11:00 AM</td><td>9:00 PM</td></tr>
-          <tr><td>Friday</td><td>11:00 AM</td><td>10:00 PM</td></tr>
-          <tr><td>Saturday</td><td>11:00 AM</td><td>10:00 PM</td></tr>
-          <tr><td>Sunday</td><td>12:00 PM</td><td>8:00 PM</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap" tabindex="0">
+        <table aria-describedby="hours-caption">
+          <caption id="hours-caption">Opening and closing hours for each day of the week</caption>
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Open</th>
+              <th scope="col">Close</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Monday</th><td>11:00 AM</td><td>9:00 PM</td></tr>
+            <tr><th scope="row">Tuesday</th><td>11:00 AM</td><td>9:00 PM</td></tr>
+            <tr><th scope="row">Wednesday</th><td>11:00 AM</td><td>9:00 PM</td></tr>
+            <tr><th scope="row">Thursday</th><td>11:00 AM</td><td>9:00 PM</td></tr>
+            <tr><th scope="row">Friday</th><td>11:00 AM</td><td>10:00 PM</td></tr>
+            <tr><th scope="row">Saturday</th><td>11:00 AM</td><td>10:00 PM</td></tr>
+            <tr><th scope="row">Sunday</th><td>12:00 PM</td><td>8:00 PM</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="card" id="menu">
@@ -188,23 +234,25 @@
     <section class="card" id="chef-image">
       <h2>Our Wood-Fired Oven</h2>
       <div class="image-wrap">
-        <img src="images/chef_doing_pizza.jpg" alt="Chef making pizza" width="1200" height="720">
+        <img src="images/chef_doing_pizza.jpg" alt="Chef making pizza" width="1200" height="720" loading="lazy">
       </div>
     </section>
 
     <section class="card" id="contact">
       <h2>Contact</h2>
-      <p>123 Main Street, Houston, TX</p>
-      <p><a href="tel:+18325551234">(832) 555-1234</a></p>
-      <p><a href="mailto:orders@luigispizza.com?subject=Pizza%20Order">orders@luigispizza.com</a></p>
+      <address>
+        123 Main Street, Houston, TX<br>
+        <a href="tel:+18325551234">(832) 555-1234</a><br>
+        <a href="mailto:orders@luigispizza.com?subject=Pizza%20Order">orders@luigispizza.com</a>
+      </address>
     </section>
   </main>
 
   <footer>
     <div class="container footer-inner">
       <small>&copy; <span id="year"></span> Luigi's Pizza</small>
-      <nav class="footer-nav">
-        <a href="/index.html">Home</a>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html" aria-current="page">Home</a>
         <a href="#menu">Menu</a>
         <a href="#contact">Contact</a>
       </nav>

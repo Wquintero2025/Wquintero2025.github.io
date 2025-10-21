@@ -5,80 +5,155 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>My Academic Agenda</title>
 
-  <!-- Global unified styles -->
+  <!--
+    ITSC-1319-301 refinements: box model, shadows, spacing, text sizing
+    • Shared palette + spacing scale via CSS variables
+    • Responsive type with clamp()
+    • Sticky gradient header and mirrored footer nav
+    • Card layout with elevation on hover
+    • Accessible, responsive tables with caption + scope
+    • Mobile-friendly nav (details/summary, no JS)
+  -->
   <style>
     :root {
+      /* Palette */
       --white: #ffffff;
-      --green: #2e7d32;
-      --blue:  #1565c0;
-      --black: #0f172a;
-      --gray:  #e5e7eb;
+      --green: #2e7d32;    /* sober green */
+      --blue:  #1565c0;    /* mid blue */
+      --black: #0f172a;    /* very dark navy */
+      --gray-50:  #f8fafc; /* bg */
+      --gray-100: #f1f5f9; /* header cells */
+      --gray-200: #e5e7eb; /* borders */
+      --muted: #475569;
+
+      /* Spacing */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 6px 14px rgba(0,0,0,.08);
+
+      /* Radius */
+      --radius: 12px;
+
+      /* Type scale */
+      --fs-sm: clamp(.9rem, 1.5vw, .95rem);
+      --fs-base: clamp(1rem, 1.6vw, 1.05rem);
+      --fs-h2: clamp(1.2rem, 2.2vw, 1.4rem);
+      --fs-h1: clamp(1.45rem, 3vw, 1.9rem);
     }
 
+    /* Reset + box sizing */
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
 
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
       color: var(--black);
       background: var(--white);
       line-height: 1.6;
+      font-size: var(--fs-base);
     }
 
-    .container { max-width: 1000px; margin: 0 auto; padding: 16px; }
+    :focus-visible { outline: 3px solid rgba(21,101,192,.5); outline-offset: 2px; border-radius: 8px; }
 
+    .container { max-width: 1000px; margin-inline: auto; padding-inline: clamp(12px, 3vw, 24px); }
+
+    /* Skip link */
+    .skip-link { position: absolute; left: -9999px; top: auto; }
+    .skip-link:focus { left: 16px; top: 12px; background: var(--white); padding: 8px 12px; border-radius: 8px; box-shadow: var(--shadow-sm); }
+
+    /* Header + Nav */
     header {
       background: linear-gradient(90deg, var(--blue), var(--green));
       color: var(--white);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: var(--shadow-md);
       position: sticky; top: 0; z-index: 10;
     }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+    .brand { font-weight: 800; letter-spacing: .4px; }
 
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; }
-    .brand { font-weight: 800; letter-spacing: .5px; }
-    .nav a { color: var(--white); text-decoration: none; padding: 8px 10px; border-radius: 8px; transition: background .2s ease; font-size: 0.95rem; }
+    nav[aria-label="Primary"] details { position: relative; }
+    nav[aria-label="Primary"] summary { list-style: none; cursor: pointer; border-radius: 10px; padding: 8px 10px; }
+    nav[aria-label="Primary"] summary::-webkit-details-marker { display: none; }
+    nav[aria-label="Primary"] .links { display: none; }
+    nav[aria-label="Primary"] details[open] .links { display: grid; gap: 6px; position: absolute; right: 0; top: calc(100% + 6px); background: rgba(0,0,0,.25); padding: 6px; border-radius: 10px; }
+
+    @media (min-width: 700px) {
+      nav[aria-label="Primary"] details { display: none; }
+      nav[aria-label="Primary"] .links { display: flex; gap: var(--space-2); }
+    }
+
+    .nav a { color: var(--white); text-decoration: none; padding: 8px 10px; border-radius: 10px; transition: background .2s ease; font-size: .95rem; }
     .nav a:hover { background: rgba(255,255,255,.15); }
+    .nav a[aria-current="page"] { background: rgba(255,255,255,.22); }
 
-    h1, h2 { line-height: 1.25; margin: 0 0 12px 0; }
+    main { padding-block: var(--space-6); }
+    section + section { margin-top: var(--space-6); }
 
-    .card { background: var(--white); border: 1px solid var(--gray); border-radius: 12px; padding: 16px; margin: 16px 0; box-shadow: 0 6px 14px rgba(0,0,0,0.06); }
+    /* Cards */
+    .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: var(--space-5); box-shadow: var(--shadow-sm); }
 
     /* Tables */
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; }
-    caption { text-align: left; padding: 8px 0; font-weight: 700; color: #334155; }
-    th, td { padding: 12px; border-bottom: 1px solid var(--gray); text-align: left; }
-    thead th { background: #f1f5f9; text-transform: uppercase; letter-spacing: .02em; font-size: .95rem; }
-    tbody tr:nth-child(even) { background: #f8fafc; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--gray-200); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+    table { width: 100%; border-collapse: collapse; background: var(--white); }
+    caption { text-align: left; padding: var(--space-3) var(--space-4); font-weight: 700; color: #334155; }
+    thead th { background: var(--gray-100); text-transform: uppercase; letter-spacing: .02em; font-size: var(--fs-sm); }
+    th, td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--gray-200); text-align: left; vertical-align: top; }
+    tbody tr:nth-child(even) { background: var(--gray-50); }
     tbody tr:hover { background: #eef2f7; }
 
     .colspan-cell { background: var(--green); color: var(--white); text-align: center; font-weight: 700; }
     .rowspan-cell { background: #ffc107; color: #333; font-weight: 700; }
 
-    footer { margin-top: 24px; border-top: 1px solid var(--gray); background: #f8fafc; color: var(--black); }
-    .footer-inner { padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    /* Footer */
+    footer { margin-top: var(--space-6); border-top: 1px solid var(--gray-200); background: var(--gray-50); color: var(--black); }
+    .footer-inner { padding: var(--space-4); display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
     .footer-nav a { color: var(--blue); text-decoration: none; padding: 6px 8px; border-radius: 8px; }
     .footer-nav a:hover { background: #e2e8f0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <!-- Header / Navigation -->
   <header>
     <div class="container nav">
       <div class="brand">My Academic Agenda</div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="fav-lists.html">My Favorite Lists</a>
-        <a href="forms.html">Contact</a>
+      <nav aria-label="Primary" class="nav">
+        <details>
+          <summary>Menu</summary>
+          <div class="links">
+            <a href="index.html">Home</a>
+            <a href="fav-lists.html" aria-current="page">My Favorite Lists</a>
+            <a href="forms.html">Contact</a>
+          </div>
+        </details>
+        <div class="links" aria-hidden="true">
+          <a href="index.html">Home</a>
+          <a href="fav-lists.html" aria-current="page">My Favorite Lists</a>
+          <a href="forms.html">Contact</a>
+        </div>
       </nav>
     </div>
   </header>
 
   <!-- Weekly Study Schedule -->
-  <main class="container">
+  <main id="main" class="container">
     <section class="card">
       <h1>Weekly Study Schedule</h1>
-      <div class="table-wrap">
+      <p class="muted">Plan your week by course and time. All rows are keyboard-focusable.</p>
+      <div class="table-wrap" tabindex="0">
         <table aria-describedby="schedule-desc">
           <caption id="schedule-desc">Study plan by day and time</caption>
           <thead>
@@ -93,7 +168,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>8:10 AM – 10:00 AM</td>
+              <th scope="row">8:10 AM – 10:00 AM</th>
               <td>Integrated Software Applications I</td>
               <td>—</td>
               <td>Integrated Software Applications I</td>
@@ -101,7 +176,7 @@
               <td>Free Day</td>
             </tr>
             <tr>
-              <td>10:10 AM – 12:00 PM</td>
+              <th scope="row">10:10 AM – 12:00 PM</th>
               <td>—</td>
               <td>Internet / Web Page Development</td>
               <td>—</td>
@@ -109,11 +184,11 @@
               <td>Free Day</td>
             </tr>
             <tr>
-              <td>12:00 PM – 2:00 PM</td>
+              <th scope="row">12:00 PM – 2:00 PM</th>
               <td colspan="5" class="colspan-cell">Lunch Break and Homework Time</td>
             </tr>
             <tr>
-              <td>6:00 PM – 9:00 PM</td>
+              <th scope="row">6:00 PM – 9:00 PM</th>
               <td>—</td>
               <td>Business and Professional Communication</td>
               <td>—</td>
@@ -128,7 +203,7 @@
     <!-- Class Portfolio Table -->
     <section class="card">
       <h2>Class Portfolio — Internet / Web Page Development</h2>
-      <div class="table-wrap">
+      <div class="table-wrap" tabindex="0">
         <table aria-describedby="portfolio-desc">
           <caption id="portfolio-desc">Weekly projects and tasks</caption>
           <thead>
@@ -140,7 +215,7 @@
           </thead>
           <tbody>
             <tr>
-              <td rowspan="2" class="rowspan-cell">Week 1</td>
+              <th scope="rowgroup" rowspan="2" class="rowspan-cell">Week 1</th>
               <td>Install Visual Studio Code</td>
               <td>Set up the developer environment</td>
             </tr>
@@ -149,7 +224,7 @@
               <td>Create the web page — Hello World</td>
             </tr>
             <tr>
-              <td rowspan="2" class="rowspan-cell">Week 2</td>
+              <th scope="rowgroup" rowspan="2" class="rowspan-cell">Week 2</th>
               <td>My First Interactive Web</td>
               <td>Create a web page with a list of my favorite music and games</td>
             </tr>
@@ -158,7 +233,7 @@
               <td>Define my top 5 music and game lists, then link to Spotify/YouTube with hyperlinks</td>
             </tr>
             <tr>
-              <td rowspan="2" class="rowspan-cell">Week 3</td>
+              <th scope="rowgroup" rowspan="2" class="rowspan-cell">Week 3</th>
               <td>Learning About Tables</td>
               <td>Create my first table in my website</td>
             </tr>
@@ -176,10 +251,10 @@
   <footer>
     <div class="container footer-inner">
       <small>&copy; <span id="year"></span> Wilson Quintero — Web Development Class</small>
-      <nav class="footer-nav">
+      <nav class="footer-nav" aria-label="Footer">
         <a href="index.html">Home</a>
         <a href="fav-lists.html">My Favorite Lists</a>
-         <a href="forms.html">Contact</a>
+        <a href="forms.html">Contact</a>
       </nav>
     </div>
   </footer>
