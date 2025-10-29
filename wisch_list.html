@@ -11,7 +11,6 @@
   <!-- Custom CSS (simple, readable) -->
   <style>
     :root{
-      /* Same palette vibe as your example */
       --white:#ffffff; --green:#2e7d32; --blue:#1565c0; --black:#0f172a; --gray:#e5e7eb; --muted:#475569;
     }
     body{font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:var(--black)}
@@ -23,6 +22,8 @@
     .card{border:1px solid #eef2f7; box-shadow:0 6px 22px rgba(0,0,0,.06)}
     .card img{height:190px; object-fit:cover}
     .section-title{letter-spacing:.4px}
+    .reasons{margin:0; padding-left:1.1rem}
+    .reasons li{margin:.2rem 0}
     footer{border-top:1px solid var(--gray)}
   </style>
 </head>
@@ -52,7 +53,7 @@
         <div class="col-lg-7">
           <span class="badge text-bg-light text-primary border mb-3">Semantic HTML • Responsive • Bootstrap Navbar</span>
           <h1 class="display-6 fw-bold mb-3">My Travel Wishlist</h1>
-          <p class="lead mb-0">Six destinations I want to visit. Each card shows an image, the name of the place, and a short reason why it’s on my list.</p>
+          <p class="lead mb-0">Six destinations I want to visit. Each card shows an image, the name of the place, and three reasons why it’s on my list.</p>
         </div>
         <div class="col-lg-5 text-center">
           <img class="img-fluid rounded-4 border" src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop" alt="Laptop with code on a desk" />
@@ -69,97 +70,121 @@
         <div class="d-flex justify-content-between align-items-end mb-4">
           <div>
             <h2 id="wishlist-title" class="section-title h3 fw-bold mb-1">Travel Wishlist</h2>
-            <p class="text-muted mb-0">A collage of six places with image, name, and description.</p>
+            <p class="text-muted mb-0">A collage of six places with image, name, and three reasons for each.</p>
           </div>
         </div>
 
         <div class="row g-4">
-          <!-- Item 1: Colorado -->
+          <!-- Item 1: Colorado (Breckenridge) -->
           <div class="col-12 col-sm-6 col-lg-4">
             <article class="card h-100">
               <figure class="mb-0">
-                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Snowy mountains in Colorado" />
+                <img src="https://images.unsplash.com/photo-1516179408953-3b8ac5531f5b?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Snowy slopes and town lights in Breckenridge, Colorado" />
               </figure>
               <div class="card-body">
                 <header class="mb-2">
-                  <h3 class="h5 card-title">Ski in Colorado</h3>
+                  <h3 class="h5 card-title">Ski in Colorado (Breckenridge)</h3>
                 </header>
-                <p class="card-text">Learn to ski in Breckenridge or Aspen and enjoy the mountain views.</p>
+                <ul class="reasons">
+                  <li>Learn to ski on beginner‑friendly slopes.</li>
+                  <li>Mountain views and winter town vibe.</li>
+                  <li>Hot chocolate after a day on the snow.</li>
+                </ul>
               </div>
             </article>
           </div>
 
-          <!-- Item 2: Cartagena -->
+          <!-- Item 2: Cartagena (Walled City) -->
           <div class="col-12 col-sm-6 col-lg-4">
             <article class="card h-100">
               <figure class="mb-0">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Tropical beach in Cartagena" />
+                <img src="https://images.unsplash.com/photo-1598899134739-24b77c9a3b4b?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Colorful colonial street in Cartagena's walled city" />
               </figure>
               <div class="card-body">
                 <header class="mb-2">
                   <h3 class="h5 card-title">Cartagena, Colombia</h3>
                 </header>
-                <p class="card-text">Walk the walled city and relax at the beaches of Islas del Rosario.</p>
+                <ul class="reasons">
+                  <li>Walk colorful colonial streets in the walled city.</li>
+                  <li>Swim at Islas del Rosario.</li>
+                  <li>Caribbean sunsets on the ramparts.</li>
+                </ul>
               </div>
             </article>
           </div>
 
-          <!-- Item 3: Grand Canyon -->
+          <!-- Item 3: Grand Canyon (Sunrise) -->
           <div class="col-12 col-sm-6 col-lg-4">
             <article class="card h-100">
               <figure class="mb-0">
-                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Grand Canyon landscape" />
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Grand Canyon at sunrise with glowing cliffs" />
               </figure>
               <div class="card-body">
                 <header class="mb-2">
                   <h3 class="h5 card-title">Grand Canyon</h3>
                 </header>
-                <p class="card-text">See sunrise at Mather Point and hike a short part of Bright Angel Trail.</p>
+                <ul class="reasons">
+                  <li>See sunrise at Mather Point.</li>
+                  <li>Short hike on Bright Angel Trail.</li>
+                  <li>Epic views that photos can’t capture.</li>
+                </ul>
               </div>
             </article>
           </div>
 
-          <!-- Item 4: Great Wall -->
+          <!-- Item 4: Great Wall (Mutianyu) -->
           <div class="col-12 col-sm-6 col-lg-4">
             <article class="card h-100">
               <figure class="mb-0">
-                <img src="https://images.unsplash.com/photo-1549899595-ecaa0f7b9f40?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Great Wall of China" />
+                <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Great Wall of China snaking over green hills" />
               </figure>
               <div class="card-body">
                 <header class="mb-2">
-                  <h3 class="h5 card-title">Great Wall of China</h3>
+                  <h3 class="h5 card-title">Great Wall of China (Mutianyu)</h3>
                 </header>
-                <p class="card-text">Visit the Mutianyu section and ride the toboggan down—bucket‑list moment.</p>
+                <ul class="reasons">
+                  <li>Walk a restored, less crowded section.</li>
+                  <li>History and engineering in one view.</li>
+                  <li>Ride the toboggan down for fun.</li>
+                </ul>
               </div>
             </article>
           </div>
 
-          <!-- Item 5: Dubai -->
+          <!-- Item 5: Dubai (Skyline) -->
           <div class="col-12 col-sm-6 col-lg-4">
             <article class="card h-100">
               <figure class="mb-0">
-                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Dubai skyline at dusk" />
+                <img src="https://images.unsplash.com/photo-1526481280698-8fcc13fd90d2?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Dubai skyline with Burj Khalifa at dusk" />
               </figure>
               <div class="card-body">
                 <header class="mb-2">
                   <h3 class="h5 card-title">Dubai, UAE</h3>
                 </header>
-                <p class="card-text">See the Burj Khalifa, Dubai Fountain, and desert safari at sunset.</p>
+                <ul class="reasons">
+                  <li>See the city from Burj Khalifa.</li>
+                  <li>Watch the fountain show at night.</li>
+                  <li>Desert safari and dune bashing.</li>
+                </ul>
               </div>
             </article>
           </div>
 
-          <!-- Item 6: Coffee Region -->
+          <!-- Item 6: Colombia Coffee Region (Cocora) -->
           <div class="col-12 col-sm-6 col-lg-4">
             <article class="card h-100">
               <figure class="mb-0">
-                <img src="https://images.unsplash.com/photo-1520975922131-c0a56b81e3e8?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Colombian coffee region hills" />
+                <img src="https://images.unsplash.com/photo-1571690741450-0a1e6fc7c9f1?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Tall wax palms in Cocora Valley, Colombia" />
               </figure>
               <div class="card-body">
                 <header class="mb-2">
                   <h3 class="h5 card-title">Colombia Coffee Region</h3>
                 </header>
-                <p class="card-text">Tour coffee farms and visit the Cocora Valley wax palms near Salento.</p>
+                <ul class="reasons">
+                  <li>See the wax palms in Cocora Valley.</li>
+                  <li>Tour coffee farms and tastings.</li>
+                  <li>Colorful towns like Salento and Filandia.</li>
+                </ul>
               </div>
             </article>
           </div>
@@ -167,11 +192,11 @@
       </div>
     </section>
 
-    <!-- About section -->
+    <!-- About section (kept short per your request) -->
     <section id="about" class="py-5 bg-light" aria-labelledby="about-title">
       <div class="container">
-        <h2 id="about-title" class="h4 fw-bold mb-3">About this page</h2>
-        <p class="mb-0">Built for <strong>Internet/Web Page Development (ITSC‑1319‑301)</strong>. The HTML uses semantic structure (<code>header</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>figure</code>, <code>footer</code>), enhanced with light custom CSS for spacing and readability, plus a Bootstrap <em>navbar</em> for responsive navigation.</p>
+        <h2 id="about-title" class="h4 fw-bold mb-3">About</h2>
+        <p class="mb-0">Built for ITSC‑1319‑301 using semantic HTML, simple custom CSS, and a Bootstrap navbar for responsive navigation.</p>
       </div>
     </section>
   </main>
