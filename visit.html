@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Petco Clearlake – Visit Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <span class="logo-main">Petco</span>
+        <span class="logo-sub">Clearlake, Houston TX</span>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="visit.html" class="active">Visit Us</a>
+    </nav>
+</header>
+
+<main class="page">
+    <section>
+        <h1>Visit Petco Clearlake</h1>
+        <p>
+            The Petco Clearlake store is located in a shopping center in Houston, Texas.
+            The store is accessible by car and offers parking spaces for customers.
+        </p>
+    </section>
+
+    <section class="visit-layout">
+        <div class="visit-info">
+            <h2>Location</h2>
+            <p><strong>Address:</strong><br>
+                Petco – Clearlake<br>
+                2410 Bay Area Blvd, Suite B<br>
+                Houston, TX 77058
+            </p>
+
+            <h2>Parking and Accessibility</h2>
+            <p>
+                The store shares a surface parking lot with other businesses in the shopping
+                center. Parking is typically free for customers.
+            </p>
+            <p>
+                Entrances are designed to accommodate customers with mobility needs, and
+                staff can assist pet parents who require extra support.
+            </p>
+        </div>
+
+        <div class="map-container">
+            <h2>Google Map</h2>
+            <iframe
+                src="https://www.google.com/maps?q=Petco+2410+Bay+Area+Blvd+Houston+TX+77058&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Contact Form</h2>
+        <p>
+            This simple form can be used for basic questions, feedback, or appointment
+            requests. In this project, the form does not send real data, but it illustrates
+            a possible structure.
+        </p>
+        <form class="contact-form" action="#" method="post">
+            <label for="name">Full name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-mail address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="reason">Reason for your message:</label>
+            <select id="reason" name="reason">
+                <option value="question">General question</option>
+                <option value="grooming">Grooming appointment</option>
+                <option value="training">Dog training</option>
+                <option value="adoption">Adoption event</option>
+                <option value="feedback">Feedback</option>
+            </select>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit" class="btn-primary">Send message</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>Petco Clearlake &middot; Visit us in Houston, Texas</p>
+</footer>
+</body>
+</html>
